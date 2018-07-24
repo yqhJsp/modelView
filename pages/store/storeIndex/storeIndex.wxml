@@ -1,0 +1,129 @@
+<!--单门店首页-->
+<include src="../../../common/common.wxml"></include>
+<import src="../template/template" />
+<view class="session {{isCoupon==0?'':'hidden'}}">
+  <view class='top'>
+    <image src='{{fileDomain}}{{store.image}}' mode='widthFix'></image>
+  </view>
+  <view class='showContent'>
+    <!--logo-->
+    <view class='storeBox'>
+      <view class='indexLogo'>
+        <image class='logo' src='/images/store/indexImg/storeLogo.png'></image>
+      </view>
+      <view class='storeName'>{{store.name}}</view>
+      <view class='centerIcon'>
+       <block wx:for="{{tag}}" wx:for-index="index" wx:for-item="item1" wx:key="key">
+        <view class='storeCon'>{{item1}}</view>
+        </block>
+      </view>
+      <!--优惠买单-->
+      <view class='peroderBtn' bindtap='goPreferent'>优惠买单</view>
+      <!--信息-->
+      <view class='showCeter'>
+        <view class='tr border'>
+          <view class='td1'>
+            <image src='/images/store/indexImg/date.png' class='icon mtop' mode="widthFix"></image>
+          </view>
+          <view class='td2'>
+            <label>营业时间：</label>
+            <label>{{store.hours}}</label>
+          </view>
+        </view>
+
+        <view class='tr' bindtap='getlocation'>
+          <view class='td1'>
+            <image src='/images/store/indexImg/dizhi.png' class='icon mtop' mode="widthFix"></image>
+          </view>
+          <view class='td2'>
+            <label>{{store.address}}</label>
+          </view>
+          <view class='td3' bindtap='goCall'>
+            <image src='/images/store/indexImg/icon-arrow.png' class='ricon' mode="widthFix"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!--end-->
+
+    <!--优惠卷-->
+    <view class='storeDome' wx:if="{{couponlist.length>0&&maninfo.isCoupon==1}}">
+      <view class='storeTop'>
+        <image src='/images/store/indexImg/concup.png' class='topImg' mode='widthFix'></image>
+      </view>
+      <view class='storeConpou'>
+       <block wx:for="{{couponlist}}" wx:for-index="index" wx:for-item="item" wx:key="key">
+        <template is="coupontem" data="{{item}}" wx:if="{{index==0}}"></template>
+        </block>
+        <view class='storeMore' bindtap='getCoupon'>
+          <view class='coufont morefont'>更多</view>
+        </view>
+      </view>
+    </view>
+    <!--栏目-->
+    <!--三图片-->
+    <view class='storeColum'>
+      <!--标题-->
+      <view class='columTitle'>
+        <label class='itemLabel'>店铺展示</label>
+      </view>
+      <!--内容-->
+      <view class='view-mall'>
+      <block wx:for="{{store.imagesIds}}" wx:for-index="index" wx:for-item="img" wx:key="key">
+        <template is="indexColumns1" data="{{img,fileDomain}}"></template>
+        </block>
+      </view>
+    </view>
+    <!--单图片-->
+
+    <view class='storeColum'>
+      <!--标题-->
+      <view class='columTitle'>
+        <label class='itemLabel'>店铺展示</label>
+      </view>
+      <!--内容-->
+      <view class='view-mall'>
+        <template is="wxParse" data="{{wxParseData:article.nodes}}"></template>
+      </view>
+    </view>
+    <!--end-->
+  </view>
+</view>
+<!--转发悬浮按钮-->
+<view class='transmit'>
+  <view class='shareBtn' wx:if="{{store.isSubScribe==1}}" bindtap='goSubScribe'> 
+    <image src='/images/store/indexImg/yuyue.png' class='tricon'></image>
+    <view class='tranfont'>预约</view>
+  </view>
+  <view class='shareBtn' bindtap='goCall'>
+    <image src='/images/store/indexImg/lianxi.png' class='tricon'></image>
+    <view class='tranfont'>联系</view>
+  </view>
+  <button class='sharecon' open-type="share">
+    <image src='/images/store/indexImg/fenxiao.png' class='tricon'></image>
+    <view class='tranfont'>分享</view>
+  </button>
+</view>
+
+<!--优惠卷弹窗-->
+<view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+<view animation="{{animationData}}" class="coupon_area {{isCoupon == 1 ? 'display-block':'display-none'}}">
+  <view class="couponTitle">
+    <view class="coupon_tip">
+      优惠卷
+    </view>
+    <image class="couponClose" bindtap="hideModal" src="/images/store/indexImg/delete.png"></image>
+  </view>
+  <view class='couponDome'>
+    <block wx:if="{{couponlist.length>0}}">
+      <block wx:for="{{couponlist}}" wx:for-index="index" wx:for-item="item" wx:key="key">
+        <template data="{{item,fileDomain}}" is="coupontem"></template>
+      </block>
+    </block>
+    <block wx:else>
+      <view class='coupon_no'>
+      <image src='/images/store/indexImg/no.png'></image>
+      </view>
+    </block>
+  </view>
+</view>

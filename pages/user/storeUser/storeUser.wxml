@@ -1,0 +1,288 @@
+<!--pages/site/signUser/signUser.wxml-->
+<view class='userTop' style='background-color:#{{maninfo.tone}}' wx:if="{{member.userInfo.avatarUrl!=''}}"></view>
+<view class='session' wx:if="{{member.userInfo.avatarUrl!=''}}">
+  <view class='top'>
+    <view class='indexLogo'>
+      <image src='{{member.userInfo.avatarUrl}}' class='useIcon' wx:if="{{member.userInfo.avatarUrl!=''}}"></image>
+      <image src='/images/mall/indexImg/hear.png' class='useIcon' wx:if="{{member.userInfo.avatarUrl==''}}"></image>
+    </view>
+    <view class='userNmae' wx:if="{{member.userInfo.nickName!=''}}">{{member.userInfo.nickName!=''?member.userInfo.nickName:'会员'}}</view>
+  </view>
+  <!--我的订单-->
+  <view class='signTian' wx:if="{{maninfo.isPayPattern==1&&maninfo.type==1006||maninfo.type==1002||maninfo.type==1008}}">
+    <view class='signTem border' data-type="2">
+      <view class='userLeft'>
+        我的订单
+      </view>
+      <view class='userRight' bindtap='getOrder' data-idx="1">
+        
+      </view>
+    </view>
+    <!--订单快捷-->
+    <view class="navs">
+      <view class="nav-item" bindtap="toOrder" id="1" data-type="">
+        <label class='badge' wx:if="{{orderNum.unpaid!=0}}">{{orderNum.unpaid}}</label>
+        <view class='topimg'>
+          <image src="/images/mall/indexImg/icon/icon_payment.png" class="nav-image" mode='widthFix' />
+        </view>
+        <text>待付款</text>
+      </view>
+      <view class="nav-item" bindtap="toOrder" id="2" data-type="">
+        <label class='badge' wx:if="{{orderNum.pendingshipment!=0}}">{{orderNum.pendingshipment}}</label>
+        <view class='topimg'>
+          <image src="/images/mall/indexImg/icon/icon_send.png" class="nav-image" mode='widthFix' />
+        </view>
+        <text>待发货</text>
+      </view>
+      <view class="nav-item" bindtap="toOrder" id="6" data-type="">
+        <label class='badge' wx:if="{{orderNum.shipped!=0}}">{{orderNum.shipped}}</label>
+        <view class='topimg'>
+          <image src="/images/mall/indexImg/icon/icon_goods.png" class="goods-image" mode='widthFix' />
+        </view>
+        <text>待收货</text>
+      </view>
+      <view class="nav-item" bindtap="toOrder" id="3" data-type="">
+        <label class='badge' wx:if="{{orderNum.over!=0}}">{{orderNum.over}}</label>
+        <view class='topimg'>
+          <image src="/images/mall/indexImg/icon/icon_evaluate.png" class="nav-image" mode='widthFix' />
+        </view>
+        <text>已完成</text>
+      </view>
+      <view class="nav-item" bindtap="toOrder" id="5" data-type="">
+        <label class='badge' wx:if="{{orderNum.rights!=0}}">{{orderNum.rights}}</label>
+        <view class='topimg'>
+          <image src="/images/mall/indexImg/icon/icon_Return.png" class="nav-image" style='height:34rpx' />
+        </view>
+        <text>退款</text>
+      </view>
+    </view>
+  </view>
+
+  <!--支付模式-->
+  <view class='signTian' wx:if="{{maninfo.isPayPattern==1&&maninfo.type==1006||maninfo.type==1002||maninfo.type==1008}}">
+    <!--营销分割线-->
+    <view wx:if="{{maninfo.type==1006}}">
+    <view class='signTem border' bindtap='getMyCampaign'>
+      <view class='name'>
+        <image src='/images/mall/indexImg/person/icon_wodefenxiao.png' class='userIcon' mode='widthFix'></image>
+      </view>
+      <view class='nameText'>
+        我的分销
+      </view>
+      <view class='temRignt'>
+        <image src='/images/mall/indexImg/icon/icon-arrow.png' class='goIcon'></image>
+      </view>
+    </view>
+    <!--获取推广码-->
+      <view class='signTem border' bindtap='getPromocode'>
+        <view class='name'>
+          <image src='/images/mall/indexImg/person/qcorde.png' class='userIcon' mode='widthFix'></image>
+        </view>
+        <view class='nameText'>
+          生成推广码
+        </view>
+        <view class='temRignt'>
+          <image src='/images/mall/indexImg/icon/icon-arrow.png' class='goIcon'></image>
+        </view>
+      </view>
+      <!--我的粉丝-->
+      <view class='signTem border' bindtap='getMyFans'>
+        <view class='name'>
+          <image src='/images/mall/indexImg/person/member.png' class='userIcon' mode='widthFix'></image>
+        </view>
+        <view class='nameText'>
+          我的粉丝
+        </view>
+        <view class='temRignt'>
+          <image src='/images/mall/indexImg/icon/icon-arrow.png' class='goIcon'></image>
+        </view>
+      </view>
+</view>
+
+    <!--门店-->
+    <view wx:if="{{maninfo.type==1008}}">
+      <view class='signTem border' bindtap='goConsult'>
+        <view class='name'>
+          <image src='/images/store/indexImg/storeIcon1.png' class='mydist' mode='widthFix'></image>
+        </view>
+        <view class='nameText'>
+          我的预约
+        </view>
+        <view class='temRignt'>
+          <image src='/images/store/indexImg/icon-arrow.png' class='goIcon'></image>
+        </view>
+      </view>
+      <view class='signTem border' bindtap='goCollect'>
+        <view class='name'>
+          <image src='/images/store/indexImg/storeIcon3.png' class='userIcon' mode='widthFix'></image>
+        </view>
+        <view class='nameText'>
+          我的收藏
+        </view>
+        <view class='temRignt'>
+          <image src='/images/store/indexImg/icon-arrow.png' class='goIcon'></image>
+        </view>
+      </view>
+      <view class='signTem border' bindtap='goPreferent'>
+        <view class='name'>
+          <image src='/images/store/indexImg/storeIcon4.png' class='userIcon' mode='widthFix'></image>
+        </view>
+        <view class='nameText'>
+          我的优惠买单
+        </view>
+        <view class='temRignt'>
+          <image src='/images/store/indexImg/icon-arrow.png' class='goIcon'></image>
+        </view>
+      </view>
+    </view>
+
+    <!--营销\门店-->
+    <view wx:if="{{maninfo.type==1006||maninfo.type==1008}}">
+      <view class='signTem border' bindtap='goMyMember'>
+        <view class='name'>
+          <image src='/images/mall/indexImg/person/storeIcon2.png' class='userIcon' mode='widthFix'></image>
+        </view>
+        <view class='nameText'>
+          我的会员卡
+        </view>
+        <view class='temRignt'>
+          <image src='/images/mall/indexImg/icon/icon-arrow.png' class='goIcon'></image>
+        </view>
+      </view>
+      <view class='signTem border' bindtap='goCoupon'>
+        <view class='name'>
+          <image src='/images/mall/indexImg/person/icon_wodeyouhuijuan.png' class='userIcon' mode='widthFix'></image>
+        </view>
+        <view class='nameText'>
+          我的优惠券
+        </view>
+        <view class='temRignt'>
+          <image src='/images/mall/indexImg/icon/icon-arrow.png' class='goIcon'></image>
+        </view>
+      </view>
+      <view class='signTem border' bindtap='goInteg'>
+        <view class='name'>
+          <image src='/images/mall/indexImg/person/icon_wodejifen.png' class='userIcon' mode='widthFix'></image>
+        </view>
+        <view class='nameText'>
+          我的积分
+        </view>
+        <view class='temRignt'>
+          <image src='/images/mall/indexImg/icon/icon-arrow.png' class='goIcon'></image>
+        </view>
+      </view>
+    </view>
+
+    <view class='signTem border' bindtap='getAddress'>
+      <view class='name'>
+        <image src='/images/mall/indexImg/person/icon_wodeshouhuodizhi.png' class='userIcon' mode='widthFix'></image>
+      </view>
+      <view class='nameText'>
+        收货地址
+      </view>
+      <view class='temRignt'>
+        <image src='/images/mall/indexImg/icon/icon-arrow.png' class='goIcon'></image>
+      </view>
+    </view>
+
+    <view class='signTem border' bindtap='goCall'>
+      <view class='name'>
+        <image src='/images/mall/indexImg/person/icon_lianxikefu.png' class='mydist' mode='widthFix'></image>
+      </view>
+      <view class='nameText'>
+        联系客服
+      </view>
+      <view class='temRignt'>
+        <image src='/images/mall/indexImg/icon/icon-arrow.png' class='goIcon'></image>
+      </view>
+    </view>
+    <view class='signTem border'>
+      <view class='name'>
+        <image src='/images/mall/indexImg/person/icon_zaixianzixun.png' class='mydist' mode='widthFix'></image>
+      </view>
+      <view class='nameText'>
+        <button open-type="contact" class='onlineBtn tl'>
+          <text class="item-text">在线咨询</text>
+        </button>
+      </view>
+      <view class='temRignt'>
+        <button open-type="contact" session-from="weapp" class='onlineBtn tr'>
+          <image src='/images/mall/indexImg/icon/icon-arrow.png' class='goIcon'></image>
+        </button>
+      </view>
+    </view>
+    <view class='signTem ' bindtap='getSet'>
+      <view class='name'>
+        <image src='/images/mall/indexImg/person/icon_shezhi.png' class='mydist' mode='widthFix'></image>
+      </view>
+      <view class='nameText'>
+        设置
+      </view>
+      <view class='temRignt'>
+        <image src='/images/mall/indexImg/icon/icon-arrow.png' class='goIcon'></image>
+      </view>
+    </view>
+  </view>
+  <!--end-->
+
+  <!--mini版商城展示-->
+  <view class='signTian' wx:if="{{maninfo.isPayPattern==2}}">
+    <view class='signTem border' bindtap='goSubscribe'>
+      <view class='name'>
+        <image src='/images/indexImg/person/storeIcon1.png' class='mydist' mode='widthFix'></image>
+      </view>
+      <view class='nameText'>
+        我的预约
+      </view>
+      <view class='temRignt'>
+        <image src='/images/indexImg/icon-arrow.png' class='goIcon'></image>
+      </view>
+    </view>
+    <view class='signTem border' bindtap='goCall'>
+      <view class='name'>
+        <image src='/images/indexImg/person/icon_lianxikefu.png' class='userIcon' mode='widthFix'></image>
+      </view>
+      <view class='nameText'>
+        联系客服
+      </view>
+      <view class='temRignt'>
+        <image src='/images/indexImg/icon-arrow.png' class='goIcon'></image>
+      </view>
+    </view>
+    <view class='signTem border' bindtap='goCousiting'>
+      <view class='name'>
+        <image src='/images/indexImg/person/icon_zaixianzixun.png' class='userIcon' mode='widthFix'></image>
+      </view>
+      <view class='nameText'>
+        <button open-type="contact" class='onlineBtn tl'>
+          <text class="item-text">在线咨询</text>
+        </button>
+      </view>
+      <view class='temRignt'>
+        <button open-type="contact" session-from="weapp" class='onlineBtn tr'>
+          <image src='/images/indexImg/icon-arrow.png' class='goIcon'></image>
+        </button>
+      </view>
+    </view>
+    <view class='signTem' bindtap='getSet'>
+      <view class='name'>
+        <image src='/images/indexImg/person/icon_shezhi.png' class='mydist' mode='widthFix'></image>
+      </view>
+      <view class='nameText'>
+        设置
+      </view>
+      <view class='temRignt'>
+        <image src='/images/indexImg/icon-arrow.png' class='goIcon'></image>
+      </view>
+    </view>
+  </view>
+</view>
+<!--预加载-->
+<view class='loadView' wx:if="{{isLoad}}">
+  <image src='/images/mall/indexImg/yuload.gif' mode='widthFix' class='loadImg'></image>
+</view>
+<!--未授权-->
+<view class='noMember' wx:if="{{member.userInfo.avatarUrl==''}}">
+<view class='userTip'>请授权登录，以便查看您的个人信息！</view>
+  <button class='getUser' style='background:#{{maninfo.tone}}' open-type='getUserInfo' bindgetuserinfo="bindGetUserInfo">授权登录</button>
+</view>

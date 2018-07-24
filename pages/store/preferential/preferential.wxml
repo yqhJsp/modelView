@@ -1,0 +1,139 @@
+<!--pages/site/preferential/preferential.wxml-->
+<import src="../template/template" />
+<view class='session'>
+  <view class='pretable'>
+    <view class='preTitle'>参与优惠金额</view>
+    <view class='pretr'>
+      <view class='prerow'>参与优惠金额</view>
+      <view class='prerow2'>
+        <input bindinput='prefInput' type="digit" class='preInput' placeholder='询问服务员后输入' placeholder-style="color:#999" ></input>
+      </view>
+    </view>
+    <view class='noprefent'>
+      <view class='checkbox_item {{isNofav==1?"active":""}}' bindtap='checked'>
+        <checkbox value="" class='carbox' />
+      </view>
+      <label>输入不参与优惠金额（如酒水，套餐）</label>
+    </view>
+    <view class='pretr' wx:if="{{isNofav==1}}">
+      <view class='prerow'>不参与优惠金额</view>
+      <view class='prerow2'>
+        <input bindinput='noPrefInput' type="digit" class='preInput' placeholder='询问服务员后输入' placeholder-style="color:#999" disabled = "{{isAbled}}"></input>
+      </view>
+    </view>
+
+    <view class='distr'>
+      <view class='distd boder'> 
+        <view class='integt'>优惠券</view>
+        <view class='prerow3' bindtap='getCoupon' wx:if="{{couponDes==''}}">{{couponList.length}}张可用</view>
+        <view class='prerow3' wx:if="{{couponDes!=''}}" bindtap='getCoupon'>{{couponDes}}</view>
+        <view class='cotip'>
+          <image class="itemImage" src="/images/indexImg/icon-arrow.png"></image>
+        </view>
+      </view>
+      <view class='distd' wx:if="{{member.isRole==1}}">
+        <view class='integt'>积分</view>
+        <view class='integright'>
+          <label>{{integSum}}积分可用，{{maninfo.integralDeDuction}}积分抵扣1元</label>
+        </view>
+        <view class='integleft'>
+          <input class='integInput' bindinput='integLabel' value='' placeholder="请输入积分" placeholder-style="color:#999"></input>
+        </view>
+        <view class='cotip'>
+          <image class="itemImage" src="/images/store/indexImg/icon-arrow.png"></image>
+        </view>
+      </view>
+    </view>
+
+    <view class='distr'>
+      <view class='distd boder'>
+        <view class='prerow'>{{maninfo.discounts/10}}折</view>
+        <view class='prerow2'>
+          <label class='prices'>￥{{zksum}}</label>
+        </view>
+      </view>
+      <view class='distd boder' wx:if="{{member.isRole==1}}">
+        <view class='prerow'>优惠券满减</view>
+        <view class='prerow2'>
+          <label class='prices'>-￥{{facevalue}}</label>
+        </view>
+      </view>
+      <view class='distd boder'>
+        <view class='prerow'>积分抵扣</view>
+        <view class='prerow2'>
+          <label class='prices'>-￥{{integLabel}}</label>
+        </view>
+      </view>
+      <view class='distd'>
+        <view class='prerow'>实付款</view>
+        <view class='prerow2'>
+          <label class='prices'>￥{{sfsum}}</label>
+        </view>
+      </view>
+    </view>
+    <!--说明-->
+    <view class='prebottom'>
+      <view class='preTip prices'>买单说明</view>
+      <view class='prices'>请与服务员确认后，再买单！部分商品不参与优惠买单</view>
+    </view>
+
+    <!--下单-->
+    <view class='mod_btn' bindtap='savePreferent'>确认提交</view>
+  </view>
+</view>
+
+<!--优惠卷弹窗-->
+<view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+<view animation="{{animationData}}" class="coupon_area {{isCoupon == 1 ? 'display-block':'display-none'}}">
+  <view class="couponTitle">
+    <view class="coupon_tip">
+      优惠券
+    </view>
+    <image class="couponClose" bindtap="hideModal" src="/images/store/indexImg/delete.png"></image>
+  </view>
+  <view class='couponDome'>
+    <block wx:if="{{couponList.length>0}}">
+      <block wx:for="{{couponList}}" wx:for-index="index" wx:for-item="item" wx:key="key">
+      <view class='couponTem'>
+       <view class='coupoat'>
+           <view class="checkBox {{item.coupon.isDefault==0?'':'active'}}" bindtap='checkedChange'  data-id='{{item.id}}' data-select='{{item.coupon.isDefault}}' data-facevalue="{{item.coupon.faceValue}}" data-cid='{{item.coupon.id}}' data-scope="{{item.coupon.scope}}" data-name='{{item.coupon.name}}' data-limit="{{item.coupon.limit}}">
+        <radio value="{{item.id}}" checked='{{item.coupon.isDefault==0?"false":"true"}}' class='carbox' />
+      </view>
+          </view>
+        <view class="couponOne {{item.scope==2?'disabled':''}}">
+            <view class='couLeft'>
+              <view class='couRed'>
+                <label class='coutip'>￥</label>
+                <label class='couprice'>{{item.coupon.faceValue/100}}</label>
+              </view>
+              <view class='coudate'>
+                <label>有效期：</label>
+                <label>{{item.coupon.endTime}}</label>
+              </view>
+              <view class='coubttom'>
+                <label>适用于：{{item.coupon.childrenInfo==''?'所有门店':item.coupon.childrenInfo.name}}</label>
+                <label wx:if="{{item.coupon.scope==2}}">（满{{item.coupon.limit/100}}元可用）</label>
+              </view>
+            </view>
+            <view class='couRigth'>
+      <view class="getcoup {{item.coupon.isDefault==1?'disabled':''}}"  wx:if="{{item.coupon.userStatus==0}}">
+                <view class='coufont'>立即使用</view>
+              </view>
+               <view class='delcoup' wx:if="{{item.coupon.userStatus==1}}">
+                <view>已使用</view>
+              </view>
+               <view class='delcoup' wx:if="{{item.coupon.userStatus==2}}">
+                <view>已过期</view>
+              </view>
+            </view>
+          </view>
+          </view>
+      </block>
+    </block>
+    <block wx:else>
+      <view class='coupon_no'>
+      <image src='/images/store/indexImg/no.png'></image>
+      </view>
+    </block>
+  </view>
+</view>

@@ -1,0 +1,179 @@
+<!--图片的模板 1002:双图文,1003:单图文,1004:无边距单图片,1005:双图片,1006:三图文,1007:有边距单图片-->
+<!--（文字）-->
+<template name="image1">
+  <view class='imglist4'  style="padding:{{item.data.info.padding==''?'':item.data.info.padding}}rpx;color:#{{item.data.info.textColor}}" bindtap='goQuick' data-type="{{item.data.info.linkType}}" data-desc="{{item.data.info.linkDesc}}">
+    <label>
+      {{item.data.info.text}}
+    </label>
+  </view>
+</template>
+
+<!--（双图文1002）-->
+<template name="image2">
+  <view class='imglist2' bindtap='goQuick' data-type="{{item2.linkType}}" data-desc="{{item2.linkDesc}}" data-src="{{fileDomain}}{{item2.image}}">
+    <view class='mall-list-img'>
+      <image src="{{fileDomain}}{{item2.image}}"/>
+    </view>
+     <view class='mall_title'>
+      <label class='mall-listword'>{{item2.text}}</label>
+    </view>
+  </view>
+</template>
+
+<!--（单图文1003）-->
+<template name="image3">
+  <view class='imglist3' bindtap='goQuick' data-type="{{item2.linkType}}" data-desc="{{item2.linkDesc}}" data-src="{{fileDomain}}{{item2.image}}">
+    <view class='mall-list-img'>
+      <image src="{{fileDomain}}{{item2.image}}" />
+       <view class='tuwen-mb'>
+        <label>{{item2.text}}</label>
+      </view> 
+    </view>
+  </view>
+</template>
+
+<!--（无边距单图片1004）data-type="{{item1.isDetail}}"-->
+<template name="image4">
+  <view class='imglist5' bindtap='goQuick' data-type="{{item2.linkType}}" data-desc="{{item2.linkDesc}}" data-src="{{fileDomain}}{{item2.image}}">
+    <image src="{{fileDomain}}{{item2.image}}" mode="widthFix"></image>
+  </view>
+</template>
+<!--（双图片1005）-->
+<template name="image5">
+  <view class="imglist6 {{item1.list.length%2==1&&index2==item.list.length-1?'imgWidth':''}}" bindtap='goQuick' data-type="{{item2.linkType}}" data-desc="{{item2.linkDesc}}" data-src="{{fileDomain}}{{item2.image}}">
+    <image src="{{fileDomain}}{{item2.image}}" class='mimg'></image>
+  </view>
+</template>
+
+<!--（三图文1006）-->
+<template name="image6">
+  <view class='imglist' bindtap='goQuick' data-type="{{item2.linkType}}" data-desc="{{item2.linkDesc}}" data-src="{{fileDomain}}{{item2.image}}">
+    <view class='mall-list-img'>
+      <image src="{{fileDomain}}{{item2.image}}" />
+      <view class='tuwen-mall'>
+        <label>{{item2.text}}</label>
+      </view>
+    </view>
+  </view>
+</template>
+
+<!--（有边距单图片1007）data-type="{{item1.isDetail}}"-->
+<template name="image7">
+  <view class='mall-padding'bindtap='goQuick' data-type="{{item2.linkType}}" data-desc="{{item2.linkDesc}}" data-src="{{fileDomain}}{{item2.image}}">
+    <image src="{{fileDomain}}{{item2.image}}" mode="widthFix"></image>
+  </view>
+</template>
+
+<!--（无边距双图片1008）data-type="{{item1.isDetail}}"-->
+<template name="image8">
+  <view class='imglist8' bindtap='goQuick' data-type="{{item2.linkType}}" data-desc="{{item2.linkDesc}}" data-src="{{fileDomain}}{{item2.image}}">
+    <image src="{{fileDomain}}{{item2.image}}" mode="widthFix"></image>
+  </view> 
+</template>
+<!--（无边距三图片1009）data-type="{{item1.isDetail}}"-->
+<template name="image9">
+  <view class='imglist9' bindtap='goQuick' data-type="{{item2.linkType}}" data-desc="{{item2.linkDesc}}" data-src="{{fileDomain}}{{item2.image}}">
+    <image src="{{fileDomain}}{{item2.image}}" mode="widthFix"></image>
+  </view>
+</template>
+
+
+
+<!--商品栏目（一行2个）-->
+<template name="mall">
+  <view class='mall-list2' id="{{item1.id}}" bindtap="goDetail">
+    <view class='mall-list-img'>
+      <image src="{{fileDomain}}{{item1.imageIds}}"/>
+    </view>
+    <view class='shopbottom'>
+      <view class='mall_title'>
+        <label class='mall-listword'>{{item1.title}}</label>
+      </view>
+      <view class='shop-prive'>
+        <view class='deprice' wx:if="{{item1.rules[0].isPromotion==1}}">￥ {{item1.minPrice/100}}</view>
+        <label class='fl privefont' wx:if="{{item1.rules[0].isPromotion==1}}">￥{{item1.rules[0].formerPrice/100}}</label>
+        <label class='fl privefont'>￥{{item1.minPrice/100}}</label>
+        <label class='kucun fr' wx:if="{{maninfo.isPayPattern==1}}">已售{{item1.outNumber}}件</label>
+      </view>
+    </view>
+  </view>
+</template>
+<!--商品（两行6个 一行3个）-->
+<template name="mall2">
+  <view class='mall-list' id="{{item1.id}}" bindtap="goDetail">
+    <view class='mall-list-img'>
+     <image src="{{fileDomain}}{{item1.imageIds}}" />
+    </view>
+    <view class='shopbottom'>
+      <view class='mall_title'>
+        <label class='mall-listword'>{{item1.title}}</label>
+      </view>
+      <view class='shop-prive'>
+        <label class='fl privefont'>￥{{item1.minPrice/100}}</label>
+        <label class='kucun fr' wx:if="{{maninfo.isPayPattern==1}}">已售{{item1.outNumber}}件</label>
+      </view>
+    </view>
+  </view>
+</template>
+<!--商品（一行4个 一行4个）-->
+<template name="mall3">
+  <view class='mall-list3' id="{{item1.id}}" bindtap="goDetail">
+    <view class='mall-list-img'>
+     <image src="{{fileDomain}}{{item1.imageIds}}" />
+    </view>
+    <view class='shopbottom'>
+      <view class='mall_title'>
+        <label class='mall-listword'>{{item1.title}}</label>
+      </view>
+      <view class='shop-prive'>
+        <label class='fl privefont ku'>￥{{item1.minPrice/100}}</label>
+        <label class='kucun fr ku' wx:if="{{maninfo.isPayPattern==1}}">已售{{item1.outNumber}}件</label>
+      </view>
+    </view>
+  </view>
+</template>
+
+<!--底部导航-->
+<template name="tabBar">  
+<view class="flex-h flex-hsb tab-bar" style="background: #{{tabbar.bgColor}};{{tabBar.position=='top'? 'top: 0' : 'bottom: 0'}}; {{tabbar.borderStyle? (tabbar.position=='top'? 'border-bottom: solid 1px '+tabbar.borderStyle + ';' : 'border-top: solid 1px '+tabbar.borderStyle + ';') : ''}}">  
+  <block wx:for="{{tabbar.info}}" wx:key="pagePath">  
+    <view class="menu-item" style="{{item.active? 'color: '+(item.selectedColor? item.selectedColor : tabBar.selectedColor) : ''}}" bindtap='goQuick' data-type="{{item.linkType}}" data-desc="{{item.linkDesc}}" data-tab="{{item.code}}">  
+      <image src="{{fileDomain}}{{item.image}}" wx:if="{{item.code!=tabActive}}"></image> 
+      <image src="{{fileDomain}}{{item.pitchImage}}" wx:if="{{item.code==tabActive && tabType==1}}"></image> 
+      <text style="color:#{{item.textOnColor}}" wx:if="{{item.code==tabActive && tabType==1}}">{{item.text}}</text> 
+      <text style="color:#{{item.textColor}}" wx:if="{{item.code!=tabActive}}">{{item.text}}</text>  
+    </view>  
+    </block>
+</view>  
+</template>
+
+<!--优惠卷模板-->
+<template name="coupontem"> 
+<view class="couponOne {{item.length-1==index?'mtright':''}}" wx:if="{{index<4}}">
+            <view class='couLeft'>
+              <view class='couRed'> 
+                <label class='coutip' style='color:#{{maninfo.tone}}'>￥</label>
+                <label class='couprice' style='color:#{{maninfo.tone}}'>{{item.faceValue/100}}</label>
+              </view>
+              <view class='coudate'>
+                <label>有效起至：</label>
+                <label>{{item.start}}-{{item.end}}</label>
+              </view>
+              <view class='coubttom'>
+                <label>适用于：{{item.name}}</label>
+                 <label wx:if="{{item.scope==2}}">（满{{item.limit/100}}元可用）</label>
+              </view>
+            </view>
+            <view class='couRigth'>
+              <view class='getcoup' style='background:#{{maninfo.tone}}'  bindtap='addcoupon' data-idx="{{item.id}}">
+              <view class='coufont' >立即领取</view>
+              </view>
+               <view class='delcoup' wx:if="{{item.userStatus==1}}">
+                <view>已领取</view>
+              </view>
+               <view class='delcoup' wx:if="{{item.userStatus==2}}">
+                <view>已过期</view>
+              </view>
+            </view>
+          </view>
+</template>

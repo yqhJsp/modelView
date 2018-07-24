@@ -1,0 +1,38 @@
+/* pages/site/mydiscover/mydiscover.wxss */
+@import '../template/template.wxss';
+page {
+  background: #f0f0f0;
+}
+.session{
+  padding:0 25rpx;
+  margin-top:30rpx;
+  position: relative
+}
+.mydisTitle{
+color:#333;
+font-size: 32rpx;
+}
+.mydistList{
+  margin-top:20rpx;
+  width:100%;  
+}
+/*无数据*/
+.nodist{
+text-align:center;
+}
+.godistBtn{
+  margin: 0 auto;
+  height: 88rpx;
+  line-height: 88rpx;
+  color: #fff;
+  width:247rpx;
+  font-size:28rpx;
+  margin-top:100rpx;
+  background: #45cdc6;
+  border-radius:16rpx;
+}
+.tab-image {
+  margin-top: 188rpx;
+  margin-bottom: 158rpx;
+  width: 294rpx;
+}

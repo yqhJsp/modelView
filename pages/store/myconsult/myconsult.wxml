@@ -1,0 +1,16 @@
+<!--我的预约-->
+<import src="../template/template" />
+<view class='session'>
+  <!--列表-->
+  <view class='mydistList'>
+  <!--循环-->
+    <block wx:for="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="key">
+   <template is="mydiscover" data="{{item,fileDomain}}"></template>
+   </block>
+  </view>
+</view>
+  <!--nodata-->
+<view class='nodist' wx:if="{{hidden}}">
+ <image src='/images/store/indexImg/icon_zanwuyuyue.png' class='tab-image' mode='widthFix'></image>
+ <view class='godistBtn' bindtap='goConsult' style="background-color:#{{maninfo.tone}}">立即预约</view>
+</view>

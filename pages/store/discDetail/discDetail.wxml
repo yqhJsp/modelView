@@ -1,0 +1,77 @@
+<!--pages/site/signIndex/signIndex.wxml-->
+<include src="../../../common/common.wxml"></include>
+<import src="../template/template"/>
+<view class='session'> 
+  <view class='discTop'>
+    <view class='title'>
+      <label>{{details.title}}</label>
+    </view>
+    <view class='infodetail'>
+      <view class='left'>
+        <label>{{details.createTime}}</label>
+      </view>
+      <view class='right'>
+        <image src='/images/store/indexImg/icon_liulang.png' class='yuImg'></image>
+        <label> {{details.eyenum}}人浏览</label>
+      </view>
+    </view>
+  </view>
+  <!--内容-->
+  <view class='detail'>
+    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+  </view>
+
+  <!--评论详情-->
+  <view class='signContent'>
+    <view class='signItem'>
+      <view class='itemTop'>
+        <label class='itemLeft'>全部评论</label>
+        <view class='itemRight' catchtap='goUpdown'>
+          <view wx:if="{{isShow==1}}">收起
+            <label class='fa fa-angle-up updown'></label>
+          </view>
+          <view wx:if="{{isShow==2}}">展开
+            <label class='fa fa-angle-down updown'></label>
+          </view>
+        </view>
+      </view>
+      <!--文字内容-->
+      <view class='content' wx:if="{{isShow==1}}">
+      <!--循环-->
+      <block wx:for="{{commentlist}}" wx:key>
+        <view class='commentOne'>
+          <view class='comheard'>
+            <image src='{{member.userInfo.avatarUrl}}'></image>
+          </view>
+          <view class='comcenter'>
+            <view class='commentWord flex'>
+              <view>
+              <label class='comname'>{{member.userInfo.nickName}}</label> : </view>
+              <view class='commentyu'>{{item.content}}</view>
+            </view>
+            <view class='flex comdata'>
+              <view class='left commom'>{{item.createTime}}</view>
+              <!-- <view class='right commom'>回复</view> -->
+            </view>
+            <view class='comReplay'>
+            <view wx:if="{{item.comment.type==2}}">
+              <view class='commentWord flex'>
+              <view>
+              <label class='comname'>{{member.userInfo.nickName}}</label> : </view>
+              <view class='commentyu'>{{item.comment.content}}</view>
+            </view>
+             <view>时间：{{item.comment.createTime}}</view>
+             </view>
+              <view class='comnull' wx:if="{{item.comment==''}}">暂无回复#</view>
+            </view>
+          </view>
+        </view>
+        </block>
+        <!--end-->
+      </view>
+    </view>
+  </view>
+
+</view>
+<!--底部导航-->
+ <template is="miniNav" data="{{details,isSign,isCollect,isLikenum}}"></template> 

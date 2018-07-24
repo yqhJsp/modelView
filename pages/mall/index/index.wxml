@@ -1,0 +1,260 @@
+<!--pages/mall/index/index.wxml-->
+<import src="../template/template" />
+<!--container-->
+<view>
+  <view class="section view_bady">
+    <!--搜索栏-->
+    <view class="flex-wrp view_search {{variable>300 ? 'active' : ''}}" bindscroll="scroll" style='background-color:#{{shopInfo.tone}}'>
+      <view class="view-left-search">
+        <view class='mall-icon-search' bindtap='goSearch'>
+          <image src='/images/indexImg/seachicon.png' />
+        </view>
+        <input placeholder="请输入搜索的商品" placeholder-style="color:#666666" focus="{{focus}}" class='search' bindinput='bindSearch' value='{{searchName}}' />
+      </view>
+      <view class="flex-item view_megase" bindtap='openMessage'>
+        <view class='mall-icon-search'>
+          <image src='/images/indexImg/icon_message.png' class='messageImg' />
+        </view>
+      </view>
+    </view>
+    <!--banner背景  -->
+    <view class='top_content'>
+      <view class='top' style='background-color:#{{shopInfo.tone}}'></view>
+      <view class='top_1' style=''></view>
+    </view>
+    <!--banner轮播图-->
+    <view class='swiper_content'>
+      <swiper indicator-dots="false" autoplay="false" interval="3000" duration="500" class='view_banner' circular="true" indicator-active-color="#ccc">
+        <block wx:for="{{swiper}}" wx:key="key" wx:for-index="index" wx:for-item="item">
+          <swiper-item bindtap="goDetail" id="{{item.linkInfo}}">
+            <image src="{{fileDomain}}{{item.attachId}}" />
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <!--end-->
+    <!-- <button data-id='xxx' open-type="share">转发</button> -->
+    <!--快捷入口-->
+    <view class='channel_content' wx:if="{{shopInfo.isPayPattern==1&&quickList.length>0}}">
+      <view class='view_channel'>
+        <block wx:for="{{quickList}}" wx:key="key">
+          <view class='channel_item' bindtap='goQuick' data-type="{{item.type}}" data-desc="{{item.desc}}">
+            <view class='view-img'>
+              <image src="{{fileDomain}}{{item.image}}" />
+              <view class='cellspan'>{{item.name}}</view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <!--end-->
+    <!--店铺公告-->
+    <view class='view-news' wx:if="{{notice.length>0}}">
+      <view class='view-news-tit'>店铺公告</view>
+      <view class='news-list-wrapper'>
+        <!--公告列表-->
+        <view class='nav_list'>
+          <swiper autoplay="false" vertical="false" interval="3000" duration="500" class='news-item' circular="true">
+            <block wx:for="{{notice}}" wx:key="key" wx:for-index="index" wx:for-item="item">
+              <swiper-item>
+                <view class='news-item' bindtap='goNotice'>
+                  <label class='red'>{{item.title}}</label>
+                  <label class='notices'>{{item.content}}</label>
+                </view>
+              </swiper-item>
+            </block>
+          </swiper>
+        </view>
+      </view>
+      <view class='view-news-more' bindtap='goNotice'>
+        <label>更多</label>
+      </view>
+    </view>
+    <!--end-->
+    <!--资讯-->
+    <view class='isInformation' wx:if="{{isInformation==1&&informations.length>0}}">
+      <view class='view_address'>
+        <!-- <view class='logos' bindtap='getlocation'>
+       <image src='/images/indexImg/zixun.png'></image> 
+    </view> -->
+        <view class='address-row'>
+          <block wx:for="{{informations}}" wx:key="key" wx:for-index="index" wx:for-item="item">
+            <view class='zixun' data-id="{{item.id}}" bindtap='goInfoDetail' wx:if="{{index<3}}">
+              <label class='hot' wx:if="{{item.isStick==1}}">热点</label>
+              <label class='shopName'>{{item.title}}</label>
+            </view>
+          </block>
+        </view>
+        <view class='map-row' bindtap="goInfo">
+          <label>更多</label>
+        </view>
+        <!-- <view class='left'> > </view> -->
+      </view>
+    </view>
+
+    <!--砍价-->
+    <view class='view-table-view' wx:if="{{shopInfo.type==2}}" style='display:none'>
+      <view class='barlist'>
+        <view class='viewFlex'>
+          <view class='shopHeigth'>砍价活动</view>
+          <view class='more'>
+            <label>全部</label>
+            <image src='/images/indexImg/icon-arrow.png' class='goIcon'></image>
+          </view>
+        </view>
+        <!--列表-->
+        <view class='barMore'>
+          <!--begin-->
+          <view class="bargainOne skboder">
+            <view class='bargainImg'>
+              <image src='/images/indexImg/sk3.png' class='bargainImg'></image>
+            </view>
+            <view class='skContent'>
+              <view class='skfont1'>
+                <label>sk-ii sk2前男友面膜 skii神仙水护肤面膜套装 补水保湿修护</label>
+              </view>
+              <view class='barBottom'>
+                <view class='barPrice'>
+                  <view class='skfont3' style='font-size:24rpx'>￥9000最多可以砍至5000元</view>
+                  <view class='barfont2'>
+                    <label>1085人正在抢购此商品</label>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <!--end-->
+        </view>
+      </view>
+    </view>
+
+    <!--秒杀栏目-->
+    <view class='view-table-view' wx:if="{{shopInfo.type==2&&skList.length>0}}">
+      <view class='nav-list'>
+        <view class='viewFlex'>
+          <view class='shopHeigth'>秒杀专区</view>
+          <view class='more' bindtap='goGroup' data-type="2">
+            <label>全部</label>
+            <image src='/images/indexImg/icon-arrow.png' class='goIcon'></image>
+          </view>
+        </view>
+        <!--列表-->
+        <view class='mall_more'>
+          <swiper indicator-dots="false" autoplay="false" interval="5000" duration="2000" circular="true" class='skSwiper' indicator-color="rgba(0, 0, 0, 0.3)" indicator-active-color="#ccc">
+            <block wx:for="{{skList}}" wx:key="key" wx:for-index="index" wx:for-item="item">
+              <swiper-item>
+                <block wx:for="{{item}}" wx:for-index="index1" wx:for-item="item1" wx:key>
+                  <view class='skone' data-id="{{item1.product.id}}" data-skid="{{item1.aid}}" data-start="1" data-type="2" bindtap='goMarkProduct'>
+                    <view class='skoneImg'>
+                      <image src='{{fileDomain}}{{item1.productRule.image}}' class='skoneImg'></image>
+                    </view>
+                    <view class='skoneBottom'>
+                      <label class='skbtn'>限时抢</label>
+                      <label class='sktitle'>{{item1.product.title}}</label>
+                    </view>
+                    <view class='skPrice'>
+                      <label class='sktip'>￥</label>
+                      <label>{{item1.price/100}}</label>
+                    </view>
+                  </view>
+                </block>
+              </swiper-item>
+            </block>
+          </swiper>
+        </view>
+      </view>
+    </view>
+
+    <!--拼团-->
+    <view class='view-table-view' wx:if="{{shopInfo.type==2&&groupList.length>0&&grouProduct.length>0}}">
+      <view class='nav-list'>
+        <view class='viewFlex'>
+          <view class='shopHeigth'>我要开团</view>
+          <view class='more' bindtap='goGroup' data-type="3">
+            <label>全部</label>
+            <image src='/images/indexImg/icon-arrow.png' class='goIcon'></image>
+          </view>
+        </view>
+        <!--列表-->
+        <view class='mall_more'>
+          <swiper indicator-dots="false" autoplay="false" interval="5000" duration="2000" circular="true" class='groupSwiper' indicator-active-color="#ccc">
+            <block wx:for="{{groupList}}" wx:key="key" wx:for-index="index" wx:for-item="item">
+              <block wx:for="{{item.products}}" wx:for-index="index1" wx:for-item="item1" wx:key>
+                <swiper-item wx:if="{{item.products.length>0}}">
+                  <view class="groupOne" catchtap='goMarkProduct' data-id="{{item1.productId}}" data-skid="{{item.id}} " data-start='1' data-type="3">
+                    <view class='skImg'>
+                      <image src='{{fileDomain}}{{item1.productRule.image}}'></image>
+                    </view>
+                    <view class='skContent'>
+                      <view class='skfont1'>
+                        <label>{{item1.product.title}}</label>
+                      </view>
+                      <view class='skProgess'>
+                        <image src='/images/indexImg/icon_duoren.png' class='groupImg'></image>
+                        <label>{{item.number}}人团</label>
+                      </view>
+                      <view class='skBottom'>
+                        <view class='skprice'>
+                          <view class='skfont2'>￥{{item1.productRule.price/100}}</view>
+                          <view class='skfont3'>
+                            <label style='font-size:24rpx'>￥</label>
+                            <label>{{item1.price/100}}</label>
+                          </view>
+                        </view>
+                        <view class='skrigth'>
+                          <view class='skBtn' catchtap='goMarkProduct' data-id="{{item1.productId}}" data-skid="{{item.id}} " data-start='1' data-type="3">去开团</view>
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                </swiper-item>
+              </block>
+            </block>
+          </swiper>
+        </view>
+      </view>
+    </view>
+    <!--栏目-->
+    <view class='view-table-view'>
+      <block wx:for="{{indexColumns}}" wx:key="key" wx:for-index="index" wx:for-item="item">
+        <view class='nav-list'>
+          <view class='view-list-title'>
+            <label class='shopHeigth'>{{item.title}} </label>
+          </view>
+          <view class='lm-panel' id="{{item.bannerProductId}}" bindtap="goDetail" wx:if="{{item.bannerImg!=''}}">
+            <image mode='widthFix' src="{{fileDomain}}{{item.bannerImg}}" style='width:100%;' />
+          </view>
+          <view class='view-mall'>
+            <block wx:for="{{item.products}}" wx:key="key1" wx:for-index="index1" wx:for-item="item1">
+              <template data="{{item1,fileDomain,isPayPattern}}" is="indexColumns3" wx:if="{{item.showType==2}}"></template>
+              <template data="{{item1,fileDomain,isPayPattern}}" is="indexColumns2" wx:if="{{item.showType==3}}"></template>
+              <template data="{{item1,fileDomain,isPayPattern}}" is="indexColumns1" wx:if="{{item.showType==4}}"></template>
+            </block>
+          </view>
+        </view>
+      </block>
+    </view>
+
+    <!--滚动栏目-->
+    <view class='view-table-view' wx:if="{{shopInfo.type==2}}" style='display:none'>
+      <view class='nav-list'>
+        <view class='view-list-title'>
+          <label class='shopHeigth'>美容化妆-全靠你的脸</label>
+        </view>
+        <view class='view-mall' style='margin:0;background-color:#fff;'>
+          <scroll-view scroll-x="true" class='scrollView'>
+            <view class="uploadWrap" scroll-x="true">
+              <!--循环-->
+              <template data="{{item1,fileDomain,isPayPattern}}" is="indexColumns4"></template>
+              <!--end-->
+            </view>
+          </scroll-view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!--预加载-->
+<view class='loadView' wx:if="{{isLoad}}">
+  <image src='/images/indexImg/yuload.gif' mode='widthFix' class='loadImg'></image>
+</view>

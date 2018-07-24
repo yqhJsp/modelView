@@ -1,0 +1,162 @@
+/* pages/user/index/mine.wxss */
+page{
+  background-color:#f5f5f5      
+}
+.session{
+  margin-bottom:100rpx
+}
+.userbg{
+  position: absolute;
+  height: 360rpx;
+  width: 100%;
+  z-index:10;
+  top: 0;
+  left: 0
+}
+.userinfo {
+  position: relative;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size:34rpx;
+}
+.account-bg {
+  width: 100%;
+  height: 100rpx;
+}
+.userinfo-avatar {
+  width:204rpx;
+  height:204rpx;
+  margin:50rpx 0 20rpx 0;
+  border-radius: 50%;
+  border:6rpx #fff solid
+}
+.userinfo-nickname {
+  color: #fff;
+}
+/* 订单 */
+.order {
+ background-color:#fff; 
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 90rpx;
+ margin-top:70rpx;
+ border-bottom:1rpx solid lightgray
+}
+.myorder-text {
+  font-size: 30rpx;
+  color:#333;
+  margin: 20rpx;
+  width: 40%;
+}
+.myorderlook-text {
+  font-size: 30rpx;
+  color:#333;
+  position: relative;
+  right: 30rpx;
+  width: 60%;
+  text-align: right;
+}
+.next-image {
+  width: 20rpx;
+  height: 25rpx;
+  position: relative;
+  right: 24rpx;
+}
+.navs {
+  background-color:#fff;       
+  display: flex;
+  height:148rpx;
+  margin-bottom:20rpx;
+}
+fr{
+float: right
+}
+fl{
+float: left
+}
+.navs  .nav-item {
+  width: 25%;
+  display: flex;
+  position: relative;
+  align-items: center;
+  flex-direction: column;
+  padding: 30rpx 0;
+  text-align: center
+}
+.nav-item  .topimg{
+  width: 60rpx;
+  height: 60rpx;
+  margin-bottom:10rpx
+}
+.nav-image {
+  width: 50rpx;
+  margin: 5rpx;
+  overflow: visible
+}
+.nav-item text {
+  margin-top: 0;
+  font-size: 27rpx;
+  color: gray;
+}
+/* 列表 */
+.person-list {
+ background-color:#fff;        
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  position: relative;
+}
+.list-item {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  height:100rpx;
+  border-bottom:1rpx solid #dedede
+}
+.item-image {
+  width: 20rpx;
+  height: 25rpx;
+  position: absolute;
+  right: 24rpx;
+}
+.item-text {
+  color: gray;
+  font-size: 30rpx;
+  margin-left: 20rpx;
+}
+.person-line {
+  width: 100%;
+  height: 2rpx;
+  background: lightgray;
+}
+.badge {
+    top: 20rpx;
+    left:59%;
+    width: 35rpx;
+    height: 35rpx;
+    position: absolute;
+    font-size:16rpx;
+    line-height:35rpx;
+    color: #fff;
+    text-align:center;
+    background: red;
+    border-radius: 100%;
+}
+.onlineBtn{
+  border:none;
+  background-color:#fff;
+  font-size: 24rpx;
+  padding: 0;
+  line-height:2;
+  text-align:left;
+  width: 100%
+}
+button::after{
+  width:0;
+  height: 0
+}

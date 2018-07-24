@@ -1,0 +1,284 @@
+<!--pages/model/index.wxml-->
+<import src="../template/template" />
+<!--主体-->
+<view class='page'>
+<image class='bgImage' src='{{indexList.index.bgImage}}' wx:if="{{indexList.index.bgType==2}}"></image>
+<!--组件-->
+<view class='showContent' style="background-color:#{{indexList.index.bgType==1?indexList.index.bgColor:''}}">
+  <block wx:for="{{indexList.list}}" wx:key="key" wx:for-item="item">
+    <!--搜索栏-->
+    <view class="flex-wrp view_search" style='background-color:#{{item.data.info.bgColor}};' wx:if="{{item.module=='top'&&item.status==1}}">
+     <image src='{{fileDomain}}{{item.data.info.left.image}}' class='leftSearch' data-type="{{item.data.info.left.linkType}}" data-desc="{{item.data.info.left.linkDesc}}" bindtap='goQuick'/>
+      <view class="view-left-search">
+        <view class='mall-icon-search' bindtap='goSearch'>
+          <image src='/images/mall/indexImg/icon/seachicon.png' />
+        </view>
+        <input placeholder="请输入搜索的商品" placeholder-style="color:#666666" focus="{{focus}}" class='search' bindinput='bindSearch' value='{{searchName}}' />
+      </view>
+      <view class="flex-item view_megase" bindtap='goQuick' data-type="{{item.data.info.right.linkType}}" data-desc="{{item.data.info.right.linkDesc}}">
+        <view class='mall-icon-search'>
+          <image src='{{fileDomain}}{{item.data.info.right.image}}' class='messageImg' />
+        </view>
+      </view>
+    </view>
+    <!--banner-->
+    <view wx:if="{{item.module=='swiper'&&item.status==1}}" class='swiperBanner'>
+      <swiper indicator-dots="false" autoplay="false" interval="3000" duration="500" circular="true" indicator-active-color="#ccc" style="height:{{item.data.height!=''?2*item.data.height:''}}rpx" class='banner'>
+        <block wx:for="{{item.data.info}}" wx:key="key1" wx:for-item="item1">
+          <swiper-item data-type="{{item1.linkType}}" data-type="{{item1.linkType}}" data-desc="{{item1.linkDesc}}" bindtap='goQuick'>
+            <image src="{{fileDomain}}{{item1.image}}" />
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <!--end-->
+    <!--地址导航-->
+    <view class='view_address' wx:if="{{item.module=='location'&&item.status==1}}">
+      <view class='logo' bindtap='getlocation' data-longitude="{{item.data.info.longitude}}" data-latitude="{{item.data.info.latitude}}" data-name="{{item.data.info.name}}" data-address="{{item.data.info.address}}">
+        <image src='/images/website/indexImg/daohang.png'></image>
+      </view>
+      <view class='addressRow'>
+        <view class='shopName'>{{item.data.info.name}}</view>
+        <view class='addressName'>{{item.data.info.address}}</view>
+      </view>
+      <view class='map-row' bindtap='goCall' data-phone="{{item.data.info.phone}}">
+        <image src='/images/website/indexImg/phone.png'></image>
+      </view>
+    </view>
+    <!--end-->
+    <!--快捷入口-->
+    <view class='channel_content' wx:if="{{item.module=='shortcut'&&item.status==1}}" style='background:#{{item.data.bgColor}}'>
+      <view class='view_channel'>
+        <block wx:for="{{item.data.info}}" wx:for-item="item1" wx:key="key1">
+          <view class='channel_item' bindtap='goQuick' data-type="{{item1.linkType}}" data-desc="{{item1.linkDesc}}">
+            <view class='view-img'>
+              <image src="{{fileDomain}}{{item1.image}}" />
+              <view class='cellspan' style='color:#{{item1.textColor}}'>{{item1.text}}</view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <!--end-->
+    <!--店铺公告-->
+    <view class='view-news' wx:if="{{item.module=='notice'&&item.status==1}}">
+      <view class='view-news-tit'>店铺公告</view>
+      <view class='news-list-wrapper'>
+        <!--公告列表-->
+        <view class='nav_list'>
+          <swiper autoplay="false" vertical="false" interval="3000" duration="500" class='news-item' circular="true">
+            <block wx:for="{{notice}}" wx:key="key" wx:for-index="index" wx:for-item="item">
+              <swiper-item>
+                <view class='news-item' bindtap='goNotice'>
+                  <label class='red'>{{item.title}}</label>
+                  <label class='notices'>{{item.content}}</label>
+                </view>
+              </swiper-item>
+            </block>
+          </swiper>
+        </view>
+      </view>
+      <view class='view-news-more' bindtap='goNotice'>
+        <label>更多</label>
+      </view>
+    </view>
+    <!--end-->
+    <!--资讯-->
+    <view class='isInformation' wx:if="{{item.module=='information'&&item.status==1}}">
+      <view class='infortmView'>
+        <view class='infortRow'>
+          <block wx:for="{{informations}}" wx:key="key" wx:for-index="index" wx:for-item="item">
+            <view class='zixun' data-id="{{item.id}}" bindtap='goInfoDetail' wx:if="{{index<3}}">
+              <label class='hot' wx:if="{{item.isStick==1}}">热点</label>
+              <label class='shopName'>{{item.title}}</label>
+            </view>
+          </block>
+        </view>
+        <view class='zixunRow' bindtap="goInfo">
+          <label>更多</label>
+        </view>
+      </view>
+    </view>
+    <!--视频-->
+    <view class='listBox' wx:if="{{item.module=='video'&&item.status==1}}">
+        <view class='videoBox'>
+          <view class='boxImg' style="width:100%;height:{{2*item.data.info.height}}rpx">
+            <video src='{{fileDomain}}{{item.data.info.video}}' style="width:100%;height:100%" id="index{{index}}" object-fit="fill" wx:if="{{playIndex==index}}" controls='{{controls}}'></video>
+            <view id="{{index}}" class="cover" style="display: {{playIndex==index?'none':'block'}};" bindtap="videoPlay">
+              <image class="coverImg" src="{{fileDomain}}{{item.data.info.image}}" mode="scaleToFill" style="height:{{2*item.data.info.height}}rpx">
+                <image class="playImg" src="{{fileDomain}}{{item.data.info.image}}" mode="scaleToFill" style="height:{{2*item.data.info.height}}rpx"></image>
+              </image>
+            </view>
+          </view>
+          <view class='boxcoent'>
+            <view>{{item.data.info.text}}</view>
+          </view>
+        </view>
+    </view>
+    <!--end-->
+    <!--音频-->
+    <view class='audioBox' wx:if="{{item.module=='frequency'&&item.status==1}}">
+      <image class='' src='{{fileDomain}}{{item.data.info.image}}' class='horn {{play==true?"rote":""}}' bindtap="audioPlay"></image>
+      <audio poster="{{fileDomain}}{{item.data.info.image}}" src="{{fileDomain}}{{item.data.info.mp3}}" id="myAudio" controls="controls" loop class='audio' autoplay="{{play}}"></audio>
+    </view>
+    <!--end-->
+    <!--图片-->
+    <view class='viewImg' wx:if="{{item.module=='image'&&item.status==1}}">
+      <view class="nav-list {{item.data.info.type==1004?'':'matop'}}">
+        <view class='view-list-title' wx:if="{{item.data.info.title!=''}}">
+          <label>{{item.data.info.title}}</label>
+          <label class='clumname' wx:if="{{item.data.info.subhead!=''}}">{{item.data.info.subhead}}</label>
+        </view>
+        <view class="view-mall" style="margin:{{item.data.info.type==1004?'0':'0 20rpx'}};padding:{{item.data.info.type==1004?'0':'0'}}">
+          <block wx:for="{{item.data.info.list}}" wx:key="key2" wx:for-index="index2" wx:for-item="item2">
+            <!--单图文-->
+            <template data="{{item2,fileDomain}}" wx:if="{{item.data.info.type==1002}}" is="image2"></template>
+            <!--双图文-->
+            <template data="{{item2,fileDomain}}" wx:if="{{item.data.info.type==1003}}" is="image3"></template>
+            <!--无边距单图片-->
+            <template data="{{item2,fileDomain}}" wx:if="{{item.data.info.type==1004}}" is="image4"></template>
+            <!--双图片-->
+            <template data="{{item2,fileDomain,item,index2}}" wx:if="{{item.data.info.type==1005}}" is="image5"></template>
+            <!--三图文-->
+            <template data="{{item2,fileDomain}}" wx:if="{{item.data.info.type==1006}}" is="image6"></template>
+            <!--有边距单图片-->
+            <template data="{{item2,fileDomain}}" wx:if="{{item.data.info.type==1007}}" is="image7"></template>
+          </block>
+        </view>
+      </view>
+    </view>
+    <!--end-->
+    <!--文本-->
+    <view class='viewImg' wx:if="{{item.module=='text'&&item.status==1}}">
+      <view class="nav-list">
+        <view class="view-mall">
+          <template data="{{item,fileDomain}}" is="image1"></template>
+        </view>
+      </view>
+    </view>
+    <!--end-->
+    <!--秒杀-->
+    <view class='viewImg' wx:if="{{item.module=='seckill'&&item.status==1}}">
+      <view class='nav-list'>
+        <view class='viewFlex'>
+          <view class='shopHeigth'>秒杀专区</view>
+          <view class='more' bindtap='goGroup' data-type="2">
+            <label>全部</label>
+            <image src='/images/mall/indexImg/icon/icon-arrow.png' class='goIcon'></image>
+          </view>
+        </view>
+        <!--列表-->
+        <view class='mall_more'>
+          <swiper indicator-dots="false" autoplay="false" interval="5000" duration="2000" circular="true" class='skSwiper' indicator-color="rgba(0, 0, 0, 0.3)" indicator-active-color="#ccc">
+            <!-- <block wx:for="{{skList}}" wx:key="key" wx:for-index="index" wx:for-item="item"> -->
+            <swiper-item>
+              <!-- <block wx:for="{{item}}" wx:for-index="index1" wx:for-item="item1" wx:key> -->
+              <view class='skone' data-id="{{item1.product.id}}" data-skid="{{item1.aid}}" data-start="1" data-type="2" bindtap='goMarkProduct'>
+                <view class='skoneImg'>
+                  <image src='/images/comImg/bg2.jpg' class='skoneImg'></image>
+                </view>
+                <view class='skoneBottom'>
+                  <label class='skbtn'>限时抢</label>
+                  <label class='sktitle'>啦啦啦仅仅是东风科技回家看看的还是</label>
+                </view>
+                <view class='skPrice'>
+                  <label class='sktip'>￥</label>
+                  <label>{{10000/100}}</label>
+                </view>
+              </view>
+              <!-- </block> -->
+            </swiper-item>
+            <!-- </block> -->
+          </swiper>
+        </view>
+      </view>
+    </view>
+    <!--end-->
+    <!--拼团-->
+    <view class='viewImg' wx:if="{{item.module=='group'&&item.status==1}}">
+      <view class='nav-list'>
+        <view class='viewFlex'>
+          <view class='shopHeigth'>我要开团</view>
+          <view class='more' bindtap='goGroup' data-type="3">
+            <label>全部</label>
+            <image src='/images/mall/indexImg/icon/icon-arrow.png' class='goIcon'></image>
+          </view>
+        </view>
+        <!--列表-->
+        <view class='mall_more'>
+          <swiper indicator-dots="false" autoplay="false" interval="5000" duration="2000" circular="true" class='groupSwiper' indicator-active-color="#ccc">
+            <!-- <block wx:for="{{groupList}}" wx:key="key" wx:for-index="index" wx:for-item="item">
+            <block wx:for="{{item.products}}" wx:for-index="index1" wx:for-item="item1" wx:key> -->
+            <swiper-item>
+              <view class="groupOne" catchtap='goMarkProduct' data-id="{{item1.productId}}" data-skid="{{item.id}} " data-start='1' data-type="3">
+                <view class='skImg'>
+                  <image src='/images/comImg/bg2.jpg'></image>
+                </view>
+                <view class='skContent'>
+                  <view class='skfont1'>
+                    <label>法式小面包，浓浓的奶香味，美味可口</label>
+                  </view>
+                  <view class='skProgess'>
+                    <image src='/images/mall/indexImg/icon/icon_duoren.png' class='groupImg'></image>
+                    <label>{{2}}人团</label>
+                  </view>
+                  <view class='skBottom'>
+                    <view class='skprice'>
+                      <view class='skfont2'>￥{{1205/100}}</view>
+                      <view class='skfont3'>
+                        <label style='font-size:24rpx'>￥</label>
+                        <label>{{1100/100}}</label>
+                      </view>
+                    </view>
+                    <view class='skrigth'>
+                      <view class='skBtn' catchtap='goMarkProduct' data-id="{{item1.productId}}" data-skid="{{item.id}} " data-start='1' data-type="3">去开团</view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </swiper-item>
+            <!-- </block>
+          </block> -->
+          </swiper>
+        </view>
+      </view>
+    </view>
+    <!--end-->
+    <!--商品组件-->
+    <view class='mall_table' wx:if="{{item.module=='product'&&item.status==1}}">
+      <view class="mall_nav">
+        <view class='mall-title' wx:if="{{item.data.info.title!=''}}">
+          <label class='shopHeigth'>{{item.data.info.title}}</label>
+        </view>
+        <view class='lm-panel' bindtap="goDetail">
+          <image mode='widthFix' src="/images/comImg/bg.jpg" style='width:100%;' />
+        </view>
+        <view class="mallView">
+          <block wx:for="{{item.data.info.list}}" wx:key="key1" wx:for-index="index1" wx:for-item="item1">
+            <!--一行两个-->
+            <template data="{{item1,fileDomain}}" wx:if="{{item.data.info.showType==2}}" is="mall"></template>
+            <!--一行三个-->
+            <template data="{{item1,fileDomain}}" wx:if="{{item.data.info.showType==3}}" is="mall2"></template>
+            <!--可滚动-->
+            <template data="{{item1,fileDomain}}" wx:if="{{item.data.info.showType==4}}" is="mall3"></template>
+          </block>
+        </view>
+      </view>
+    </view>
+    <!--end-->
+    <!--转发悬浮按钮-->
+    <view class='transmit' wx:if="{{item.module=='dial'&&item.status==1}}">
+      <view class='shareBtn' bindtap='goCall' style='background:#{{item.data.info.bgColor}};opacity:0.8' data-phone="{{item.data.info.text}}">
+        <image src='/images/mall/indexImg/icon/icon-phone.png' class='tricon'></image>
+      </view>
+    </view>
+    <!--end-->
+    <!--地图-->
+    <view  wx:if="{{item.module=='map'&&item.status==1}}">
+    <map id="map" longitude="{{item.data.info.longitude}}" latitude="{{item.data.info.latitude}}" scale="14" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" show-location style="width: 100%; height:{{2*item.data.info.height}}rpx"></map>
+    </view>
+  </block>
+</view>
+<!--end-->
+  <template data="{{tabbar,fileDomain}}"  is="tabBar" wx:if="{{tabbar!=''}}"></template> 
+</view>

@@ -1,0 +1,47 @@
+<!--多门店首页-->
+<import src="../template/template" />
+<scroll-view>
+  <!--banner-->
+  <view class='storeBanner'>
+    <swiper indicator-dots="{{dot}}" autoplay="false" interval="3000" duration="500" class='view_banner' circular="true">
+      <swiper-item>
+        <image src="{{fileDomain}}{{maninfo.imagesId}}" />
+      </swiper-item>
+    </swiper>
+  </view>
+  <!--优惠卷-->
+  <view class='storeCoupon'  wx:if="{{couponlist.length>0&&maninfo.isCoupon==1}}">
+    <view class='storeTop'>
+      <image src='/images/indexImg/concup.png' class='topImg' mode='widthFix'></image>
+    </view>
+    <view class='sontent'>
+      <!--左右滑动-->
+      <scroll-view scroll-x="true">
+        <view class="uploadWrap" scroll-x="true">
+          <!--循环-->
+          <block wx:for="{{couponlist}}" wx:for-index="index" wx:for-item="item" wx:key="key">
+          <template is="coupontem" data="{{item,index,maninfo}}"></template>
+          </block>
+          <!--end-->
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <!--门店列表-->
+  <view class='storeBttom'>
+    <view class='storeTitle'>
+      <view class='storeTab'>
+          <view class="tabOne {{currentab==2 ? 'tavtive' : ''}}"  data-type="2" catchtap='switchTab'>热门商店</view>
+           <view class="tabOne mleft {{currentab==1 ? 'tavtive' : ''}}" data-type="1"  catchtap='switchTab'>距离最近</view>
+      </view>
+    </view>
+    <!--列表-->
+    <view class='storeList'>
+    <!--循环-->
+    <block wx:for="{{infos}}" wx:for-index="index" wx:for-item="item" wx:key="key">
+    <template  is="storetem" data="{{item,fileDomain,rang,dw,maninfo}}"></template>
+     </block>
+      <!--end-->
+    </view>
+  </view>
+</scroll-view>

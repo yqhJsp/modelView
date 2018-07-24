@@ -1,0 +1,25 @@
+<!--优惠买单-->
+<view class='session'>
+  <!--循环-->
+  <block wx:for="{{list}}" wx:key>
+    <view class='preferentOne' bindtap='gopreferent' data-id="{{item.id}}">
+      <view class='pretitle'>
+        <label>门店：</label>
+        <label>{{item.childrenInfo.name}}</label>
+      </view>
+      <view class='precontent'>
+        <view class='prefRight'>
+          <view>账单金额：</view>
+          <view class='reds'>￥{{item.realPrice/100}}</view>
+        </view>
+        <view class='prefleft'>
+          <label>{{item.createTime}}</label>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
+<!--无数据-->
+<view class="tab-content1" wx:if="{{hidden}}">
+  <image src='/images/store/indexImg/noprefer.png' class='tab-image' mode='widthFix'></image>
+</view>

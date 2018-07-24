@@ -1,0 +1,170 @@
+一、官网版功能：
+1、首页：pages/site/index/index
+2、产品服务：pages/site/products/products
+3、案列展示：pages/site/caseList/caseList
+4、视频中心：pages/site/video/video
+5、联系我们：pages/site/call/call
+6、快捷入口详情：pages/site/detail/detail
+7、栏目的详情：pages/site/materialsDetail/materialsDetail
+8、立即咨询：pages/site/consulting/consulting
+9、产品服务详情、案列展示详情：pages/site/productDetail/productDetail
+
+
+二、门店
+1、首页：pages/store/index/index
+2、发现详情：pages/store/discDetail/discDetail
+3、个人中心：pages/store/storeUser/storeUser
+4、发现：pages/store/discover/discover
+5、优惠买单：pages/store/preferential/preferential
+6、提交预约：pages/store/consulting/consulting
+7、我的会员：pages/store/member/member
+8、我的预约：pages/store/myconsult/myconsult
+9、预约详情：pages/store/consultDetail/consultDetail
+10、我的积分：pages/store/integral/integral
+11、我的收藏：pages/store/myCollect/myCollect
+12、我的优惠买单：pages/store/myPreferential/myPreferential
+13、优惠买单详情：pages/store/preferentList/preferentList
+14、会员卡详情：pages/store/memberDetail/memberDetail
+15、收货地址：pages/store/address/address
+16、我的优惠券：pages/store/myCoupon/myCoupon
+17、个人信息：pages/store/personalinfo/personalinfo
+18、填写评论：pages/store/comment/comment
+
+
+三、报名工具
+1、报名工具首页：pages/sign/index/index
+2、报名详情：pages/sign/signDetail/signDetail
+3、立即报名：pages/sign/signApply/signApply
+4、个人中心：pages/sign/signUser/signUser
+5、我的参与：pages/sign/mySign/mySign
+
+
+四、餐饮版
+1、餐饮首页：pages/cater/index/index  
+2、栏目详情：pages/cater/detail/detail   
+3、预约包间：pages/cater/consulting/consulting
+4、资讯：pages/cater/products/products
+5、资讯详情：pages/cater/productDetail/productDetail
+6、在线点餐：pages/cater/online/online
+7、个人中心：pages/cater/users/users
+8、店内下单：pages/cater/caterOrder/caterOrder
+9、外卖下单：pages/cater/parcelOrder/parcelOrder
+10、地址：pages/cater/address/address
+11、选择包间：pages/cater/compartment/compartment
+12、优惠买单：pages/cater/preferential/preferential
+13、订单列表：pages/cater/orderList/orderList
+14、订单详情：pages/cater/orderDetail/orderDetail
+15、优惠买单列表：pages/cater/preferentList/preferentList
+16、支付失败：pages/cater/fail/fail
+
+
+五、营销版
+1、营销版首页：pages/mall/index/index
+2、分类：pages/mall/classify/page
+3、购物车：pages/mall/scart/page
+4、个人中心：pages/user/index/mine
+5、消息：pages/mall/message/message
+6、商品详情：pages/mall/detail/mall_detail
+7、我的订单：pages/mall/list/shopList
+8、商品列表：pages/mall/list/shopList
+9、订单支付：pages/mall/payment/orderPay
+10、收货地址：pages/mall/address/address
+11、支付成功：pages/mall/paySuccess/success
+12、订单详情：pages/mall/orderDetail/orderDetail
+13、支付失败：pages/mall/waitPay/fail
+14、退款：pages/mall/refund/orderRefund
+15、退款详情：pages/mall/refundDetail/refundDetail
+16、评价：pages/mall/evaluate/evaluate
+17、取消订单：pages/mall/cancelDetail/cancelPage
+18、店铺公告：pages/mall/notice/noticeList
+19、立即预约：pages/mall/consulting/consulting
+20、资讯：pages/mall/information/information
+21、资讯详情：pages/mall/infodetail/infodetail
+22、积分：pages/marketing/integral/integral
+23、优惠券：pages/marketing/coupon/coupon
+24、我的优惠券：pages/marketing/myCoupon/myCoupon
+25、秒杀：pages/marketing/seckill/seckill
+26、团购：pages/marketing/group/group
+27、我的分销：pages/marketing/myCampaign/myCampaign
+28、提交审核：pages/marketing/distribution/distribution
+29、提现金额：pages/marketing/deposit/deposit
+30、个人中心：pages/user/storeUser/storeUser
+31、物流信息：pages/mall/expressage/expressage
+32、个人信息：pages/mall/personalinfo/personalinfo
+33、我的会员：pages/mall/member/member
+34、会员卡详情：pages/mall/memberDetail/memberDetail
+
+
+
+字典约定：
+1、模板首页：pages/model/index
+2、字典类型：
+(1)module："swiper"
+  "name": "轮播组件",
+
+(2)module："shortcut"
+  "name": "快捷入口组件", 
+
+(3)module："video"
+  "name": "视频组件",
+
+(4)module："dial"
+  "name": "电话组件",
+
+(5)module："frequency"
+  "name": "音频组件",  
+
+(6)module："navigation"
+  "name": "底部导航", 
+
+(7)module："image"
+  "name": "图片组件", 
+  "type": "1002:双图文,1003:单图文,1004:无边距单图片,1005:双图片,1006:三图文,1007:有边距单图片",
+
+(8)module："text"
+  "name": "文本组件", 
+
+(9)module："location"
+  "name": "导航地址组件", 
+
+(10)module："product"
+  "name": "商品组件", 
+  "showType": "2.一行两个 3.一行三个 4.一行四个",
+  "type": "1:条件筛选 2:自定义",
+
+(11)module："seckill"
+  "name": "秒杀组件",
+
+(12)module："group"
+  "name": "拼团组件",
+
+(13)module："information"
+  "name": "资讯组件",
+
+(14)module："notice"
+  "name": "公告组件",
+
+(15)module："top"
+  "name": "顶部组件",
+
+小程序账号：
+1、广州大数据营销广告（非第三方）
+appid:wx28dcf487e8a7c107,   
+createUserId:1000038,
+2、广州数字营销（第三方）
+appid: wx9c7011e815897e32
+createUserId:1000008,
+2、四方传媒门店（第三方）
+appid:wx662a4730d0f03a5b,
+createUserId: 1000016
+
+2\"appid": "wxe6b4c82eaf61655d",
+    "createUserId": 1000047
+
+
+
+
+
+
+
+

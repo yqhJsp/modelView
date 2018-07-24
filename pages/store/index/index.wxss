@@ -1,0 +1,83 @@
+@import '../template/template.wxss';
+page {
+  background: #f0f0f0;
+}
+
+.storeBanner {
+  height: 273rpx;
+  width: 100%;
+  position: relative;
+}
+
+.view_banner {
+  height: 273rpx;
+}
+
+.view_banner image {
+  height: 100%;
+  width: 100%;
+}
+
+/*优惠卷*/
+
+.storeCoupon {
+  height: 336rpx;
+  width: 100%;
+  background: #fff;
+}
+
+.storeTop {
+  width: 100%;
+  text-align: center;
+  padding: 20rpx 0;
+}
+
+.topImg {
+  width: 350rpx;
+}
+.sontent {
+   margin:0 24rpx 20rpx 24rpx; 
+  /* margin-bottom:20rpx */
+}
+.uploadWrap {
+  height: 219rpx;
+  width: 100%;
+  display: flex;
+  display: -webkit-box;
+  flex-direction: column;
+}
+/*门店列表*/
+.storeBttom{
+margin-top:20rpx;
+background-color:#fff;
+}
+.storeTitle{
+  height: 88rpx;
+  position: relative;
+  text-align: center
+}
+.storeTab{
+height: 50rpx;
+width:350rpx;
+display:flex;
+flex-flow: row;
+margin:0 auto;
+padding:20rpx 0;
+}
+.tabOne{
+  width:160rpx;
+  text-align: center;
+  font-size:28rpx;
+  color: #333
+}
+.tavtive{
+  color:#666;
+  border-bottom:1rpx solid #666;
+}
+.mleft{
+  margin-left:100rpx
+}
+.storeList{
+  background:#fff;
+  width: 100%;
+}

@@ -1,0 +1,92 @@
+/* pages/site/myCollect/myCollect.wxss */
+@import '../template/template.wxss';
+page {
+  background: #f0f0f0;
+}
+ .distop{
+ padding: 20rpx 24rpx;
+background: #fff
+} 
+
+.distab {
+        padding:0;
+        text-align: center;
+          display: flex;
+  flex-direction: column;
+    display: -webkit-box;
+}
+
+.tabOne {
+        width:auto;
+        text-align: center;
+        font-size: 28rpx;
+        color: #666;
+        margin:0 50rpx 0 0;
+        padding:6rpx 0;
+}
+
+.tavtive{
+  color:#45cdc6;
+  border-bottom:1rpx solid;
+  border-bottom-color:#45cdc6
+}
+.discontent{
+  margin-top:15rpx
+}
+.disedite {
+  font-size:28rpx;
+  color: #333;
+  text-align: right;
+  padding:20rpx 30rpx
+}
+
+.infoList {
+  width: 100%;
+}
+/*底部导航*/
+.collectBar,.colledit{
+  position: fixed;
+  right: 0;
+  z-index:100;
+  width:100%;
+  border-top: 1px solid #ddd;
+  height:60rpx;
+  overflow: hidden;
+  padding:10rpx 0;
+  font-size:28rpx
+}
+.collectBar{
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  bottom:80rpx;
+}
+.colledit{
+  background-color: #45cdc6;
+  text-align:center;
+  border-top:none;
+  color:#fff;
+  line-height:60rpx;
+  bottom: 0;
+}
+.catvie{
+   background-color:#fd1a1a; 
+}
+.decolor{
+  color:#fd1a1a !important
+}
+.checkAll{
+  width:50%;
+  text-align:center;
+  line-height:60rpx;
+  color:#999
+}
+.boleft{
+  border-left:1rpx solid #999
+}
+.sective{
+  color:#45cdc6
+}
+.tab-image{
+  width:316rpx
+}

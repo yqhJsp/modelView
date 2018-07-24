@@ -1,0 +1,74 @@
+<!--优惠买单列表-->
+<import src="../template/template" />
+<view class='title'>
+  <label>优惠买单</label>
+</view>
+<view class="content">
+<view class='mydistOne'>
+    <view class='mydistLeft'>
+      <image src='{{fileDomain}}{{info.childrenInfo.image}}'></image>
+    </view>
+    <view class='mydistCenter'>
+      <view class='mydistTitle'>{{info.childrenInfo.name}}</view>
+      <view class='mydistDate'>
+        <label>下单时间：</label>
+        <label>{{info.createTime}}</label>
+      </view>
+    </view>
+    <view class='mydistRigth'>
+      <view class='detailFont'></view>
+    </view>
+  </view>
+    <view class='signTian'>
+      <view class='signTem border'>
+        <view class='nameText'>
+          参与优惠金额：
+        </view>
+        <view class='temRignt'>
+          <label>￥{{info.intPrice==''?'0':info.intPrice/100}}</label>
+        </view>
+      </view>
+      <view class='signTem border'>
+        <view class='nameText'>
+          不参与优惠金额：
+        </view>
+        <view class='temRignt'>
+          <label>￥{{info.outPrice==''?'0':info.outPrice/100}}</label>
+        </view>
+      </view>
+       <view class='signTem border'>
+        <view class='nameText'>
+          折扣：
+        </view>
+        <view class='temRignt'>
+          <label>{{info.discounts==''?'0':info.discounts/10}}折</label>
+        </view>
+      </view>
+      <view class='signTem border' wx:if="{{maninfo.isCoupon==1}}">
+        <view class='nameText'>
+          优惠卷：
+        </view>
+        <view class='temRignt'>
+          <label>￥{{info.couponValue==''?'0':info.couponValue}}</label>
+        </view>
+      </view>
+       <view class='signTem border' wx:if="{{maninfo.isIntegral==1}}">
+        <view class='nameText'>
+          积分：
+        </view>
+        <view class='temRignt'>
+          <label>￥{{info.integralValue==0?'0':info.integralValue}}</label>
+        </view>
+      </view>
+      <view class='signTem'>
+        <view class='nameText'>
+          实际付款：
+        </view>
+        <view class='temRignt'>
+          <label class='sective'>￥{{info.realPrice==''?'0':info.realPrice/100}}</label>
+        </view>
+      </view>
+    </view>
+    <!--按钮-->
+  <view class='mod_btn martop'  bindtap='goIndex'>返回首页</view>
+</view>

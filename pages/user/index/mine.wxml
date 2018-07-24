@@ -1,0 +1,127 @@
+<!--个人中心-->
+<view class="session">
+
+        <view>
+                <image src='/images/indexImg/userbg.png' class='userbg'></image>
+                <view class="userinfo">
+                        <image class="userinfo-avatar" src="{{member.userInfo.avatarUrl}}" background-size="cover"></image>
+                        <text class="userinfo-nickname">{{member.name}}</text>
+                </view>
+        </view>
+
+        <view class="separate" wx:if="{{isPayPattern==1}}"></view>
+        <view class="order" wx:if="{{isPayPattern==1}}">
+                <text class="myorder-text">我的订单</text>
+                <text class="myorderlook-text" bindtap='getOrder' data-idx="1">查看全部订单</text>
+                <image class="next-image" src="/images/indexImg/icon-arrow.png"></image>
+        </view>
+        <view class="line"></view>
+
+        <!--订单快捷-->
+        <view class="navs" wx:if="{{isPayPattern==1}}">
+                <!--订单状态-->
+                <view class="nav-item" bindtap="toOrder" id="1" data-type="">
+                        <label class='badge' wx:if="{{orderNum.unpaid!=0}}">{{orderNum.unpaid}}</label>
+                        <view class='topimg'>
+                                <image src="/images/person/order_icon01.png" class="nav-image" mode='widthFix' />
+                        </view>
+                        <text>待付款</text>
+                </view>
+                <view class="nav-item" bindtap="toOrder" id="2" data-type="">
+                        <label class='badge' wx:if="{{orderNum.pendingshipment!=0}}">{{orderNum.pendingshipment}}</label>
+                        <view class='topimg'>
+                                <image src="/images/person/order_icon02.png" class="nav-image" mode='widthFix' />
+                        </view>
+                        <text>待发货</text>
+                </view>
+                <view class="nav-item" bindtap="toOrder" id="6" data-type="">
+                        <label class='badge' wx:if="{{orderNum.shipped!=0}}">{{orderNum.shipped}}</label>
+                        <view class='topimg'>
+                                <image src="/images/person/order_icon03.png" class="nav-image" mode='widthFix' />
+                        </view>
+                        <text>待收货</text>
+                </view>
+                <view class="nav-item" bindtap="toOrder" id="3" data-type="">
+                        <label class='badge' wx:if="{{orderNum.over!=0}}">{{orderNum.over}}</label>
+                        <view class='topimg'>
+                                <image src="/images/person/order_icon04.png" class="nav-image" mode='widthFix' />
+                        </view>
+                        <text>已完成</text>
+                </view>
+                <view class="nav-item" bindtap="toOrder" id="5">
+                        <label class='badge' wx:if="{{orderNum.rights!=0}}">{{orderNum.rights}}</label>
+                        <view class='topimg' data-type="{{orderNum.rights}}">
+                                <image src="/images/person/order_icon05.png" class="nav-image" mode='widthFix' />
+                        </view>
+                        <text>退款</text>
+                </view>
+                <!-- <block wx:for-items="{{orderItems}}" wx:key="name">
+                        <view class="nav-item" catchtap="toOrder" data-type="{{item.name}}" id="{{item.typeId}}">
+                                <label class='badge'></label>
+                                <image src="{{item.imageurl}}" class="nav-image" />
+                                <text>{{item.name}}</text>
+                        </view>
+                </block> -->
+        </view>
+
+        <view class="separate"></view>
+        <view class="person-list" wx:if="{{isPayPattern==1}}">
+                <view class="list-item" bindtap='getAddress'>
+                        <text class="item-text">我的收货地址</text>
+                        <image class="item-image" src="/images/indexImg/icon-arrow.png"></image>
+                </view>
+
+                <!--营销-->
+                <view wx:if="{{shopInfo.type==2}}" style='width:100%'>
+                        <view class="list-item" bindtap='getMyCampaign'>
+                                <text class="item-text">我的分销</text>
+                                <image class="item-image" src="/images/indexImg/icon-arrow.png"></image>
+                        </view>
+                        <view class="list-item" bindtap='goCoupon' wx:if="{{shopInfo.isCoupon==1}}">
+                                <text class="item-text">我的优惠卷</text>
+                                <image class="item-image" src="/images/indexImg/icon-arrow.png"></image>
+                        </view>
+                        <view class="list-item" bindtap='goInteg' wx:if="{{shopInfo.isIntegral==1}}">
+                                <text class="item-text">我的积分</text>
+                                <image class="item-image" src="/images/indexImg/icon-arrow.png"></image>
+                        </view>
+                </view>
+                <!--end-->
+                <view class="list-item" bindtap='goCall'>
+                        <text class="item-text">联系客服</text>
+                        <image class="item-image" src="/images/indexImg/icon-arrow.png"></image>
+                </view>
+                <view class="list-item" bindtap='goCousiting'>
+                        <button open-type="contact" class='onlineBtn'>
+                                <text class="item-text">在线咨询</text>
+                        </button>
+                        <image class="item-image" src="/images/indexImg/icon-arrow.png"></image>
+                </view>
+                <view class="list-item" bindtap='getSet'>
+                        <text class="item-text">设置</text>
+                        <image class="item-image" src="/images/indexImg/icon-arrow.png"></image>
+                </view>
+        </view>
+
+        <!--mini版-->
+        <view class="person-list" wx:if="{{isPayPattern==2}}" style='margin-top:50rpx'>
+                <view class="list-item" bindtap='goSubscribe'>
+                        <text class="item-text">我的预约</text>
+                        <image class="item-image" src="/images/indexImg/icon-arrow.png"></image>
+                </view>
+                <view class="person-line"></view>
+                <view class="list-item" bindtap='goCall'>
+                        <text class="item-text">联系客服</text>
+                        <image class="item-image" src="/images/indexImg/icon-arrow.png"></image>
+                </view>
+                <view class="person-line"></view>
+                <view class="list-item" bindtap='goCousiting'>
+                        <button open-type="contact" class='onlineBtn'>
+                                <text class="item-text">在线咨询</text>
+                        </button>
+                        <image class="item-image" src="/images/indexImg/icon-arrow.png"></image>
+                </view>
+                <view class="person-line"></view>
+        </view>
+        <view class="separate"></view>
+</view>

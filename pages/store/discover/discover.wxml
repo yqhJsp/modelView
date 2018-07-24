@@ -1,0 +1,86 @@
+<!--pages/site/discover/discover.wxml-->
+<import src="../template/template" />
+<view class='distop'>
+        <scroll-view scroll-x="true">
+                <view class='distab' scroll-x="true">
+                  <view class='tabOne {{new==true&&isTopic==0?"tavtive":""}}'  bindtap='clickNew'>最新</view>
+                        <block wx:for="{{topics}}" wx:key="key" >
+                                <view class='tabOne {{item.active==true&&isTopic==1?"tavtive":""}}' data-tid='{{item.id}}' bindtap='clickInfos'>{{item.name}}</view>
+                        </block>
+                </view>
+        </scroll-view>
+</view>
+<view class='discontent'>
+        <view class='topImg' data-id='{{fristInfo.id}}' bindtap='openInfo'   wx:if="{{fristInfo.title!=undefined}}" bindtap='openInfo'>
+                <image src='{{fileDomain}}{{fristInfo.image}}'></image>
+                <view class='tuwen-mb'>
+                        <label>{{fristInfo.title}}</label>
+                </view>
+        </view>
+        <view class='infoList'>
+                <!--循环-->
+                <block wx:for="{{infos}}" wx:key>
+                        <block view class="view" wx:if="{{index%2==0}}">
+                                <!--单数-->
+                                <view class='disone'>
+                                        <view class='info' data-id='{{item.id}}' bindtap='openInfo'>
+                                                <view class='infoletf'>
+                                                        <view class='title'>{{item.title}}</view>
+                                                        <view class='disbottom'>
+                                                                <view class='disread'>
+                                                                        <image src='/images/store/indexImg/icon_liulangshu.png' class='ydImg' mode='widthFix'></image>
+                                                                        <label> {{item.eyenum==''?0:item.eyenum}}</label>
+                                                                </view>
+                                                                <view class='disread'>
+                                                                        <image src='/images/store/indexImg/icon_pinlunshu.png' class='hfImg' mode='widthFix'></image>
+                                                                        <label> {{item.count==''?0:item.count}}</label>
+                                                                </view>
+                                                                <view class='disread'>
+                                                                        <image src='/images/store/indexImg/icon_dianzanshu.png' class='dzImg' mode='widthFix'></image>
+                                                                        <label> {{item.likenum==''?0:item.likenum}}</label>
+                                                                </view>
+                                                        </view>
+                                                </view>
+                                                <view class='inforight'>
+                                                        <image src="{{fileDomain}}{{item.image}}"></image>
+                                                </view>
+                                        </view>
+                                </view>
+                        </block>
+                        <block wx:else>
+                                <!--复数-->
+                                <view class='disone'>
+                                        <view class='info' data-id='{{item.id}}' bindtap='openInfo'>
+                                                <view class='inforight' style='text-align: left;'>
+                                                        <image src="{{fileDomain}}{{item.image}}"></image>
+                                                </view>
+                                                <view class='infoletf'>
+                                                        <view class='title'>{{item.title}}</view>
+                                                        <view class='disbottom'>
+                                                                <view class='disread'>
+                                                                        <image src='/images/store/indexImg/icon_liulang.png' class='ydImg' mode='widthFix'></image>
+                                                                        <label> {{item.eyenum==''?0:item.eyenum}}</label>
+                                                                </view>
+                                                                <view class='disread'>
+                                                                        <image src='/images/store/indexImg/hf.png' class='hfImg' mode='widthFix'></image>
+                                                                        <label> {{item.count==''?0:item.count}}</label>
+                                                                </view>
+                                                                <view class='disread'>
+                                                                        <image src='/images/store/indexImg/icon_dianzanshu.png' class='dzImg' mode='widthFix'></image>
+                                                                        <label> {{item.likenum==''?0:item.likenum}}</label>
+                                                                </view>
+                                                        </view>
+                                                </view>
+                                        </view>
+                                </view>
+                        </block>
+
+                        <!--end-->
+                </block>
+
+        </view>
+</view>
+<!--无数据-->
+<view class="tab-content1" wx:if="{{noData}}">
+  <image src='/images/store/indexImg/icon_zanwuzixun.png' class='tab-image' mode='widthFix'></image>
+</view>

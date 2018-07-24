@@ -1,0 +1,48 @@
+<!--pages/marketing/myCoupon/myCoupon.wxml-->
+<view class='order-tab'>
+    <view class="orderOne {{currentNavtab==1 ? 'tactive' : ''}}" data-idx="1" bindtap="switchTab">
+      <text>未使用</text>
+    </view>
+    <view class="orderOne {{currentNavtab==2 ? 'tactive' : ''}}" data-idx="2" bindtap="switchTab">
+      <text>已使用</text>
+    </view>
+    <view class="orderOne {{currentNavtab==3 ? 'tactive' : ''}}" data-idx="3" bindtap="switchTab">
+      <text>已过期</text>
+    </view>
+  </view>
+    <!--优惠卷列表-->
+  <view class='storeConpou'>
+      <block wx:for="{{couponList}}" wx:for-index="index" wx:for-item="item" wx:key="key">
+      <view class="couponOne">
+          <view class='couLeft'>
+            <view class='couRed'>
+              <label class='coutip'>￥</label>
+              <label class='couprice'>{{item.coupon.faceValue/100}}</label>
+            </view>
+            <view class='coudate'>
+              <label>有效起至：</label>
+              <label>{{item.start}}-{{item.end}}</label>
+            </view>
+            <view class='coubttom'>
+              <label>适用于：{{item.coupon.childrenInfo==''?'所有门店':item.coupon.childrenInfo.name}}</label>
+              <label wx:if="{{item.coupon.scope==2}}">（满{{item.coupon.limit/100}}元可用）</label>
+            </view>
+          </view>
+          <view class='couRigth'>
+            <view class='getcoup' wx:if="{{item.status==1}}">
+              <view class='coufont'>立即使用</view>
+            </view>
+             <view class='delcoup' wx:if="{{item.status==2}}">
+                <view>已使用</view>
+              </view>
+               <view class='delcoup' wx:if="{{item.status==3}}">
+                <view>已过期</view>
+              </view>
+          </view>
+        </view> 
+      </block>
+  </view>
+  <!--无数据时-->
+<view class="tab-content1" wx:if="{{hidden}}">
+  <image src='/images/store/indexImg/nocoupon.png' class='tab-image'></image>
+</view>

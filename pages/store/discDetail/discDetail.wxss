@@ -1,0 +1,214 @@
+/* pages/site/signIndex/signIndex.wxss */
+@import '../template/template.wxss';
+page{
+   background:#fff
+}
+.session{
+  position: relative;
+  margin-bottom:150rpx
+}
+.flex{
+  display: flex;
+  flex-flow: row
+}
+.title{
+padding:30rpx 35rpx;
+font-size: 36rpx;
+color: #000
+}
+.infodetail{
+ padding:10rpx 35rpx;
+ display:flex;
+ flex-direction: row;
+ font-size:24rpx;
+ color: #999 
+}
+.left{
+  width:50%;
+  text-align: left
+}
+.right{
+  width:50%;
+  text-align: right
+}
+.yuImg{
+  width: 26rpx;
+  height:16rpx
+}
+.detail{
+margin-top:15rpx
+}
+.detailImg{
+  width: 100%
+}
+.signBanner{
+  height: 360rpx;
+  width: 100%
+}
+.detailTitle{
+  padding:0 30rpx;
+  margin-top:40rpx;
+  position: relative
+}
+.fristTop{
+  font-size: 40rpx;
+  color: #333
+}
+.signDate{
+  font-size: 24rpx;
+  color: #999;
+  margin-top:10rpx
+}
+.signNum{
+  color: #2299ff;
+  font-size:24rpx;
+  margin-top:50rpx
+}
+.signicon{
+  height: 28rpx;
+  width: 26rpx;
+  display:inline-block;
+  margin-right: 10rpx;
+}
+.num{
+  vertical-align:5rpx
+}
+.signBtn{
+  width:110rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  font-size:24rpx;
+  color:#fff;
+  position:absolute;
+  bottom:-10rpx;
+  right:40rpx;
+  background:#2299ff;
+  border-radius: 8rpx;
+  text-align: center
+}
+ .signActive{
+   background: #cccccc
+ }
+.signContent{
+  position: relative;
+  margin-top:20rpx;
+}
+.signItem{
+margin-top:20rpx;
+background:#fff;
+border-radius:16rpx;
+position: relative;
+padding:0
+}
+.itemTop{
+padding:30rpx;
+display: flex;
+flex-flow: row;
+}
+.itemLeft {
+display:inline-block;
+font-size:28rpx;
+width:70%;
+color:#8e8e8e
+}
+.itemRight{
+  width:30%;
+  text-align: right;
+  color: #45cdc6;
+  font-size: 28rpx
+}
+.updown{
+  font-weight: normal;
+}
+.content,.allSign{
+  font-size:24rpx;
+  color: #666
+}
+.content{
+  padding:0
+}
+.allSign{
+padding-bottom:0
+}
+.listOne{
+display: flex;
+flex-flow: row;
+padding:20rpx 0;
+border-bottom:1rpx solid #cccccc
+}
+.listOne .listImg{
+  width: 163rpx;
+  text-align:center;
+}
+
+.listImg image{
+  width: 74rpx;
+  height: 74rpx;
+  border-radius:100%
+}
+.listContent{
+  width:50%;
+  font-size:28rpx;
+  color: #666 
+}
+.signName{
+  display:inline-block;
+  margin-top:20rpx
+}
+.sexIcon{
+  width: 26rpx;
+  display:inline-block;
+  margin:0 10rpx
+}
+.signtime{
+ width:40%;
+color: #666;
+font-size:24rpx;
+padding-top:25rpx
+}
+/*循环*/
+.commentOne{
+  display:flex;
+  flex-flow:row;
+  padding:30rpx 30rpx;
+  border-top: 1rpx solid #eeeeee
+}
+.comheard{
+  width: 96rpx;
+}
+.comheard image{
+  width: 88rpx;
+  height: 88rpx;
+  border-radius:100%;
+}
+.comcenter{
+ width:83%;
+ padding-left:20rpx
+}
+.commentWord{
+  font-size:28rpx;
+  color: #333;
+}
+.comname{
+  color: #45cdc6;
+}
+.commentyu{
+width:70%
+}
+.comdata{
+  padding:15rpx 0
+}
+.commom{
+  color: #8e8e8e;
+  font-size:24rpx;
+}
+.comReplay{
+background: #f4f5f7;
+border-radius:16rpx;
+margin-top:15rpx;
+padding:20rpx
+}
+.comnull{
+  color:#333;
+  font-size: 28rpx
+}
